@@ -33,16 +33,27 @@ private slots:
 
     void on_viewDepartmentsButton_clicked();
 
+    void on_editButton_clicked();
+
+    void on_addButton_clicked();
+
+    void on_deleteButton_clicked();
+
+    void on_submitButton_clicked();
+
+    void on_revertButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
     QSqlQuery query;
     UserTable *userTable;
     DepartmentTable *departmentTable;
+    QSqlTableModel *model;
 
 private:
     void proceedToView();
-    void proceedToLogin();
+    void logout();
 
 };
 

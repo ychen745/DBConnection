@@ -26,7 +26,7 @@ UserTable::UserTable(QWidget *parent) : QWidget(parent)
     view->setModel(model);
 //    view->show();
 
-    QVBoxLayout *lay = new QVBoxLayout(this);
+    QVBoxLayout *lay = new QVBoxLayout;
     lay->addWidget(view);
 
     QHBoxLayout *hbox = new QHBoxLayout;

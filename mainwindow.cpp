@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QKeyEvent>
 #include <QSqlDriver>
+#include <QMessageBox>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -42,7 +43,7 @@ void MainWindow::proceedToView(){
     }
 }
 
-void MainWindow::proceedToLogin(){
+void MainWindow::logout(){
     db.close();
     db.setHostName("");
     db.setPort(-1);
@@ -66,17 +67,76 @@ void MainWindow::on_passwordEdit_returnPressed()
 
 void MainWindow::on_logoutButton_clicked()
 {
-    proceedToLogin();
+    logout();
 }
 
 void MainWindow::on_viewUserButton_clicked()
 {
-    userTable = new UserTable;
-    userTable->show();
+//    userTable = new UserTable;
+//    userTable->show();
+    model = new QSqlTableModel;
+    model->setTable("user");
+    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    model->select();
+
+    QTableView *dataTableView = ui->dataTableView;
+    dataTableView->setModel(model);
 }
 
 void MainWindow::on_viewDepartmentsButton_clicked()
 {
     departmentTable = new DepartmentTable;
     departmentTable->show();
+}
+
+void MainWindow::on_editButton_clicked()
+{
+    ui->addButton->setEnabled(true);
+    ui->deleteButton->setEnabled(true);
+//    ui->submitButton->setEnabled(true);
+}
+
+void MainWindow::on_addButton_clicked()
+{
+    QSqlRecord record = model->record();
+    model->insertRecord(-1, record);
+    ui->submitButton->setEnabled(true);
+}
+
+void MainWindow::on_deleteButton_clicked()
+{
+    QItemSelectionModel *selectModel = ui->dataTableView->selectionModel();
+    QModelIndexList selectList = selectModel->selectedIndexes();
+    QList<int> delRow;
+    for(int i = 0; i < selectList.size(); i++)
+    {
+        QModelIndex index = selectList.at(i);
+        delRow << index.row();
+    }
+    while(delRow.size() > 0)
+    {
+        int row = delRow.at(0);
+        delRow.removeAt(row);
+        model->removeRow(row);
+    }
+
+    if(QMessageBox::question(this, "Alert", "Are you sure?") == QMessageBox::Yes)
+    {
+        model->submitAll();
+    }
+    ui->submitButton->setEnabled(true);
+}
+
+void MainWindow::on_submitButton_clicked()
+{
+    if(QMessageBox::question(this, "Alert", "Are you sure?") == QMessageBox::Yes)
+    {
+        model->submitAll();
+    }
+    ui->submitButton->setEnabled(false);
+}
+
+void MainWindow::on_revertButton_clicked()
+{
+
 }

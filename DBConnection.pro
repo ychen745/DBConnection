@@ -42,8 +42,7 @@ HEADERS += \
     datatable.h
 
 FORMS += \
-        mainwindow.ui \
-    datatable.ui
+        mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
