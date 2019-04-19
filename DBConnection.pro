@@ -30,6 +30,7 @@ SOURCES += \
     usertable.cpp \
     departmenttable.cpp \
     mysqlhandle.cpp \
+    datatable.cpp \
     datatable.cpp
 
 HEADERS += \
@@ -37,6 +38,7 @@ HEADERS += \
     usertable.h \
     departmenttable.h \
     mysqlhandle.h \
+    datatable.h \
     datatable.h
 
 FORMS += \

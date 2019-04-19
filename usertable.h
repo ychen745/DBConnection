@@ -5,6 +5,7 @@
 #include <QSqlTableModel>
 #include <QTableView>
 #include <QItemDelegate>
+#include "datatable.h"
 
 class ReadOnlyDelegate : public QItemDelegate
 {

@@ -6,6 +6,7 @@
 #include <QSqlTableModel>
 #include <QTableView>
 #include <QItemDelegate>
+#include "datatable.h"
 
 class DepartmentTableDelegate : public QItemDelegate
 {
@@ -36,14 +37,16 @@ class DepartmentTable : public QWidget
     Q_OBJECT
 public:
     explicit DepartmentTable(QWidget *parent = nullptr);
-    QSqlTableModel *_model;
-    QTableView *_view;
+    QSqlTableModel *model;
+    QTableView *view;
 
 signals:
 
 public slots:
-
-private:
+    void slotSubmitClicked();
+    void slotDelClicked();
+    void slotAddClicked();
+    void slotCloseClicked();
 };
 
 #endif // DEPARTMENTTABLE_H
