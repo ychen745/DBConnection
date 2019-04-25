@@ -27,20 +27,23 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    usertable.cpp \
-    departmenttable.cpp \
+#    usertable.cpp \
+#    departmenttable.cpp \
 #    mysqlhandle.cpp \
-    datatable.cpp
+    datatable.cpp \
+    searchdialog.cpp
 
 HEADERS += \
         mainwindow.h \
-    usertable.h \
-    departmenttable.h \
+#    usertable.h \
+#    departmenttable.h \
 #    mysqlhandle.h \
-    datatable.h
+    datatable.h \
+    searchdialog.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+        searchdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

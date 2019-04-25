@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "usertable.h"
-#include "departmenttable.h"
+//#include "usertable.h"
+//#include "departmenttable.h"
 #include <QtSql>
 #include <QSqlDatabase>
 #include <QSqlQuery>
@@ -9,6 +9,7 @@
 #include <QKeyEvent>
 #include <QSqlDriver>
 #include <QMessageBox>
+#include "searchdialog.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -72,6 +73,7 @@ void MainWindow::logout(){
 
 void MainWindow::enableEdit()
 {
+    ui->dataTableView->setItemDelegate(new QItemDelegate);
     ui->addButton->setVisible(true);
     ui->deleteButton->setVisible(true);
     ui->submitButton->setVisible(true);
@@ -133,7 +135,7 @@ void MainWindow::on_viewUserButton_clicked()
     {
         QTableView *dataTableView = ui->dataTableView;
         dataTableView->setModel(model);
-
+        dataTableView->setItemDelegate(new ReadOnlyDelegate);
         ui->editButton->setEnabled(true);
     }
     else
@@ -156,7 +158,7 @@ void MainWindow::on_viewDepartmentsButton_clicked()
 
     QTableView *dataTableView = ui->dataTableView;
     dataTableView->setModel(model);
-
+    dataTableView->setItemDelegate(new ReadOnlyDelegate);
     ui->editButton->setEnabled(true);
 
     if(model->select())
@@ -226,4 +228,10 @@ void MainWindow::on_revertButton_clicked()
     {
         model->revertAll();
     }
+}
+
+void MainWindow::on_searchButton_clicked()
+{
+    SearchDialog *searchDialog = new SearchDialog(this);
+    searchDialog->show();
 }

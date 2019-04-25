@@ -1,6 +1,6 @@
 #include "mainwindow.h"
-#include "usertable.h"
-#include "departmenttable.h"
+//#include "usertable.h"
+//#include "departmenttable.h"
 #include <QApplication>
 #include <QSqlDatabase>
 
