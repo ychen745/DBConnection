@@ -125,7 +125,8 @@ void MainWindow::on_viewUserButton_clicked()
 //    userTable->show();
     initUi();
 
-    model = new QSqlTableModel;
+    if(!model)
+        model = new QSqlTableModel;
     model->setTable("user");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     if(model->select())
@@ -147,7 +148,8 @@ void MainWindow::on_viewDepartmentsButton_clicked()
 //    departmentTable->show();
     initUi();
 
-    model = new QSqlTableModel;
+    if(!model)
+        model = new QSqlTableModel;
     model->setTable("department");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
     model->select();
@@ -198,7 +200,7 @@ void MainWindow::on_deleteButton_clicked()
     while(delRow.size() > 0)
     {
         int row = delRow.at(0);
-        delRow.removeAt(row);
+        delRow.removeAll(row);
         model->removeRow(row);
     }
 
