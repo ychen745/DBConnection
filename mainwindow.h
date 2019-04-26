@@ -8,8 +8,7 @@
 #include <QAbstractItemModel>
 #include <QItemDelegate>
 #include <QSqlTableModel>
-//#include "usertable.h"
-//#include "departmenttable.h"
+#include <QTableView>
 
 namespace Ui {
 class MainWindow;
@@ -75,6 +74,10 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public:
+    void setModelFilter(const QString &filter);
+    QSqlTableModel* getModel(){ return model; }
+
 private slots:
     void on_loginButton_clicked();
     void on_usernameEdit_returnPressed();
@@ -87,22 +90,21 @@ private slots:
     void on_deleteButton_clicked();
     void on_submitButton_clicked();
     void on_revertButton_clicked();
-
     void on_searchButton_clicked();
 
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
-    QSqlQuery query;
-//    UserTable *userTable;
-//    DepartmentTable *departmentTable;
+    QString table = "user";
     QSqlTableModel *model;
+    QString myFilter = "";
 
 private:
     void proceedToView();
     void logout();
     void initUi();
     void enableEdit();
+    void showDataTable();
 };
 
 #endif // MAINWINDOW_H

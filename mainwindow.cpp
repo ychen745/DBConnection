@@ -1,7 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-//#include "usertable.h"
-//#include "departmenttable.h"
 #include <QtSql>
 #include <QSqlDatabase>
 #include <QSqlQuery>
@@ -123,8 +121,6 @@ void MainWindow::on_logoutButton_clicked()
 
 void MainWindow::on_viewUserButton_clicked()
 {
-//    userTable = new UserTable;
-//    userTable->show();
     initUi();
 
     if(!model)
@@ -146,8 +142,6 @@ void MainWindow::on_viewUserButton_clicked()
 
 void MainWindow::on_viewDepartmentsButton_clicked()
 {
-//    departmentTable = new DepartmentTable;
-//    departmentTable->show();
     initUi();
 
     if(!model)
@@ -232,6 +226,34 @@ void MainWindow::on_revertButton_clicked()
 
 void MainWindow::on_searchButton_clicked()
 {
+//    SearchDialog *searchDialog = new SearchDialog(this, table);
+    qDebug() << table;
     SearchDialog *searchDialog = new SearchDialog(this);
     searchDialog->show();
+}
+
+void MainWindow::setModelFilter(const QString &filter)
+{
+    this->myFilter.append(filter);
+}
+
+void MainWindow::showDataTable()
+{
+    initUi();
+
+    if(!model)
+        model = new QSqlTableModel;
+    model->setTable(table);
+    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    if(model->select())
+    {
+        QTableView *dataTableView = ui->dataTableView;
+        dataTableView->setModel(model);
+        dataTableView->setItemDelegate(new ReadOnlyDelegate);
+        ui->editButton->setEnabled(true);
+    }
+    else
+    {
+        QMessageBox::warning(this, "Error", "Nothing in table");
+    }
 }

@@ -13,10 +13,20 @@ class SearchDialog : public QDialog
 
 public:
     explicit SearchDialog(QWidget *parent = nullptr);
+    explicit SearchDialog(QWidget *parent, QString table);
     ~SearchDialog();
+
+private slots:
+    void on_buttonBox_accepted();
 
 private:
     Ui::SearchDialog *ui;
+    QString table = "user";
+
+    QString id;
+    QString name;
+    QString department;
+    QString status;
 };
 
 #endif // SEARCHDIALOG_H
