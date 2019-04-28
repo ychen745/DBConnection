@@ -51,4 +51,5 @@ void SearchDialog::on_buttonBox_accepted()
     //set parent's filter
     MainWindow *parentptr = (MainWindow*)parent();
     parentptr->setModelFilter(filter);
+//    parentptr->getModel();
 }

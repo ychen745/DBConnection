@@ -123,49 +123,20 @@ void MainWindow::on_viewUserButton_clicked()
 {
     initUi();
 
+    table = "user";
     if(!model)
         model = new QSqlTableModel;
-    model->setTable("user");
-    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    if(model->select())
-    {
-        QTableView *dataTableView = ui->dataTableView;
-        dataTableView->setModel(model);
-        dataTableView->setItemDelegate(new ReadOnlyDelegate);
-        ui->editButton->setEnabled(true);
-    }
-    else
-    {
-        QMessageBox::warning(this, "Error", "Nothing in table");
-    }
+    showDataTable();
 }
 
 void MainWindow::on_viewDepartmentsButton_clicked()
 {
     initUi();
 
+    table = "department";
     if(!model)
         model = new QSqlTableModel;
-    model->setTable("department");
-    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    model->select();
-
-    QTableView *dataTableView = ui->dataTableView;
-    dataTableView->setModel(model);
-    dataTableView->setItemDelegate(new ReadOnlyDelegate);
-    ui->editButton->setEnabled(true);
-
-    if(model->select())
-    {
-        QTableView *dataTableView = ui->dataTableView;
-        dataTableView->setModel(model);
-
-        ui->editButton->setEnabled(true);
-    }
-    else
-    {
-        QMessageBox::warning(this, "Error", "Nothing in table");
-    }
+    showDataTable();
 }
 
 void MainWindow::on_editButton_clicked()
@@ -227,14 +198,14 @@ void MainWindow::on_revertButton_clicked()
 void MainWindow::on_searchButton_clicked()
 {
 //    SearchDialog *searchDialog = new SearchDialog(this, table);
-    qDebug() << table;
+//    qDebug() << table;
     SearchDialog *searchDialog = new SearchDialog(this);
     searchDialog->show();
 }
 
 void MainWindow::setModelFilter(const QString &filter)
 {
-    this->myFilter.append(filter);
+    myFilter = filter;
 }
 
 void MainWindow::showDataTable()
@@ -245,6 +216,8 @@ void MainWindow::showDataTable()
         model = new QSqlTableModel;
     model->setTable(table);
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+    model->setFilter(myFilter);
+    qDebug() << model->filter();
     if(model->select())
     {
         QTableView *dataTableView = ui->dataTableView;

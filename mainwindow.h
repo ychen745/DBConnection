@@ -95,8 +95,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");
+    QSqlTableModel *model = new QSqlTableModel;
     QString table = "user";
-    QSqlTableModel *model;
     QString myFilter = "";
 
 private:
