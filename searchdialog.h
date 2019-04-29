@@ -14,7 +14,8 @@ class SearchDialog : public QDialog
 
 public:
     explicit SearchDialog(QWidget *parent = nullptr);
-    explicit SearchDialog(QWidget *parent, QString table);
+    explicit SearchDialog(QWidget *parent, QStringList tableList);
+//    explicit SearchDialog(QWidget *parent, QSqlTableModel * const model);
     ~SearchDialog();
 
 private slots:
@@ -23,7 +24,8 @@ private slots:
 
 private:
     Ui::SearchDialog *ui;
-    QString table = "user";
+//    QString table = "user";
+//    QStringList tableList;
     QSqlTableModel *model;
 
     QString id;

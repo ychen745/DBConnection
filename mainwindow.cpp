@@ -197,10 +197,11 @@ void MainWindow::on_revertButton_clicked()
 
 void MainWindow::on_chooseButton_clicked()
 {
-//    SearchDialog *searchDialog = new SearchDialog(this, table);
+    QStringList tableList = db.tables();
+    qDebug() << tableList;
+    SearchDialog *searchDialog = new SearchDialog(this, tableList);
+//    searchDialog->show();
 //    qDebug() << table;
-    SearchDialog *searchDialog = new SearchDialog(this);
-    searchDialog->show();
 }
 
 void MainWindow::setModelFilter(const QString &filter)

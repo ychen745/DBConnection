@@ -12,13 +12,24 @@ SearchDialog::SearchDialog(QWidget *parent) :
 //    qDebug() << parent->objectName();
 }
 
-SearchDialog::SearchDialog(QWidget *parent, QString table) :
-    QDialog(parent),
-    table(table)
+SearchDialog::SearchDialog(QWidget *parent, QStringList tableList) :
+    QDialog(parent)
 {
     ui->setupUi(this);
-    qDebug() << parent->objectName();
+//    qDebug() << tableList;
+//    ui->tableComboBox->addItems(*tableList);
+//    foreach(QString tableName, tableList)
+//    {
+//        ui->tableComboBox->addItem(tableName);
+//    }
 }
+
+//SearchDialog::SearchDialog(QWidget *parent, QSqlTableModel * const model) :
+//    QDialog (parent),
+//    model(model)
+//{
+//    ui->setupUi(this);
+//}
 
 SearchDialog::~SearchDialog()
 {
@@ -55,5 +66,5 @@ void SearchDialog::on_buttonBox_accepted()
 
 void SearchDialog::on_searchButton_clicked()
 {
-    ui->searchFrame->setEnabled(true);
+    ui->lineEditFrame->setEnabled(true);
 }
