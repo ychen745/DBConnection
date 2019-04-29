@@ -9,7 +9,7 @@ SearchDialog::SearchDialog(QWidget *parent) :
     ui(new Ui::SearchDialog)
 {
     ui->setupUi(this);
-    qDebug() << parent->objectName();
+//    qDebug() << parent->objectName();
 }
 
 SearchDialog::SearchDialog(QWidget *parent, QString table) :
@@ -34,22 +34,26 @@ void SearchDialog::on_buttonBox_accepted()
     QString filter = "";
     if(!id.isEmpty())
     {
-        filter += "id = " + id;
+        filter += " id=" + id;
     }
     if(!name.isEmpty())
     {
-        filter += "username = " + name;
+        filter += " username='" + name + "'";
     }
     if(!department.isEmpty())
     {
-        filter += "department = " + department;
+        filter += " department='" + department + "'";
     }
     if(!status.isEmpty())
     {
-        filter += "status = " + status;
+        filter += " status=" + status;
     }
     //set parent's filter
     MainWindow *parentptr = (MainWindow*)parent();
     parentptr->setModelFilter(filter);
-//    parentptr->getModel();
+}
+
+void SearchDialog::on_searchButton_clicked()
+{
+    ui->searchFrame->setEnabled(true);
 }

@@ -2,6 +2,7 @@
 #define SEARCHDIALOG_H
 
 #include <QDialog>
+#include <QSqlTableModel>
 
 namespace Ui {
 class SearchDialog;
@@ -18,10 +19,12 @@ public:
 
 private slots:
     void on_buttonBox_accepted();
+    void on_searchButton_clicked();
 
 private:
     Ui::SearchDialog *ui;
     QString table = "user";
+    QSqlTableModel *model;
 
     QString id;
     QString name;

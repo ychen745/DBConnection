@@ -195,7 +195,7 @@ void MainWindow::on_revertButton_clicked()
     }
 }
 
-void MainWindow::on_searchButton_clicked()
+void MainWindow::on_chooseButton_clicked()
 {
 //    SearchDialog *searchDialog = new SearchDialog(this, table);
 //    qDebug() << table;
@@ -229,4 +229,9 @@ void MainWindow::showDataTable()
     {
         QMessageBox::warning(this, "Error", "Nothing in table");
     }
+}
+
+void MainWindow::on_chooseTableButton_clicked()
+{
+
 }

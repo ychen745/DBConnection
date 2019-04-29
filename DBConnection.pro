@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    choosetabledialog.cpp \
         main.cpp \
         mainwindow.cpp \
 #    usertable.cpp \
@@ -34,6 +35,7 @@ SOURCES += \
     searchdialog.cpp
 
 HEADERS += \
+    choosetabledialog.h \
         mainwindow.h \
 #    usertable.h \
 #    departmenttable.h \
@@ -42,6 +44,7 @@ HEADERS += \
     searchdialog.h
 
 FORMS += \
+        choosetabledialog.ui \
         mainwindow.ui \
         searchdialog.ui
 

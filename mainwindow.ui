@@ -230,14 +230,17 @@ color: white;</string>
            <widget class="QFrame" name="verticalFrame">
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
-              <widget class="QPushButton" name="searchButton">
+              <widget class="QPushButton" name="chooseButton">
                <property name="text">
-                <string>Search</string>
+                <string>Choose</string>
                </property>
               </widget>
              </item>
              <item>
               <widget class="QPushButton" name="viewUserButton">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="text">
                 <string>View Users</string>
                </property>
@@ -245,6 +248,9 @@ color: white;</string>
              </item>
              <item>
               <widget class="QPushButton" name="viewDepartmentsButton">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="text">
                 <string>View Departments</string>
                </property>
@@ -252,6 +258,9 @@ color: white;</string>
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_5">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="text">
                 <string>_reserved</string>
                </property>

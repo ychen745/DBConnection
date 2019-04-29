@@ -78,6 +78,7 @@ public:
     void setModelFilter(const QString &filter);
     QSqlTableModel* getModel(){ return model; }
 
+
 private slots:
     void on_loginButton_clicked();
     void on_usernameEdit_returnPressed();
@@ -90,7 +91,9 @@ private slots:
     void on_deleteButton_clicked();
     void on_submitButton_clicked();
     void on_revertButton_clicked();
-    void on_searchButton_clicked();
+    void on_chooseButton_clicked();
+
+    void on_chooseTableButton_clicked();
 
 private:
     Ui::MainWindow *ui;
